@@ -21,22 +21,40 @@ body {
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 0 40px rgba(255, 105, 180, 0.3); /* Sombra rosada sutil */
-    max-width: 500px;
+    max-width: 500px; /* Tamaño máximo del contenedor */
     width: 90%;
     text-align: center;
     position: relative;
-    z-index: 1; /* Asegura que el contenido esté sobre las partículas */
+    z-index: 1; 
     box-sizing: border-box;
+    /* Ajuste para que el contenedor también ocupe más altura */
+    display: flex; /* Usar flexbox para organizar el contenido */
+    flex-direction: column; /* Organizar elementos en columna */
+    justify-content: space-between; /* Distribuir espacio verticalmente */
+    min-height: 70vh; /* Asegurar una altura mínima para el contenedor */
+    padding-top: 50px; /* Espacio adicional arriba para el saludo */
+    padding-bottom: 50px; /* Espacio adicional abajo para el botón */
+}
+
+
+/* Estilo del mensaje de cumpleaños - ¡AHORA ARRIBA! */
+.birthday-greeting {
+    font-family: 'Pacifico', cursive;
+    color: #ff69b4; 
+    font-size: 3em;
+    margin-bottom: 50px; /* Más espacio debajo para separar de la imagen */
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+    order: 1; /* Esto hace que sea el primer elemento en flexbox */
 }
 
 /* Estilo para la imagen de los tulipanes */
 .tulip-bouquet-img {
-    width: 250px; /* Ajusta el tamaño según sea necesario */
-    height: auto; /* Mantiene la proporción */
-    margin: 0 auto 30px auto;
-    display: block; /* Para centrar con margin: auto */
-    /* Animación de "respiración" para el brillo de la imagen */
+    width: 300px; /* ¡Aumentado el tamaño! */
+    height: auto; 
+    margin: 0 auto 40px auto; /* Centrado y más espacio debajo */
+    display: block; 
     animation: glow-breathe 2.5s infinite alternate ease-in-out; 
+    order: 2; /* Esto hace que sea el segundo elemento en flexbox */
 }
 
 /* Keyframes para la animación del brillo de los tulipanes (se aplica al filtro drop-shadow de la imagen) */
@@ -89,15 +107,6 @@ body {
 }
 
 
-/* Estilo del mensaje de cumpleaños */
-.birthday-greeting {
-    font-family: 'Pacifico', cursive;
-    color: #ff69b4; 
-    font-size: 3em;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
-}
-
 /* Estilo de la razón de amor */
 .love-reason {
     font-family: 'Quicksand', sans-serif;
@@ -106,6 +115,7 @@ body {
     line-height: 1.5;
     margin-bottom: 30px;
     color: #e0e0e0;
+    order: 3; /* Esto hace que sea el tercer elemento en flexbox */
 }
 
 /* Estilo del botón misterioso */
@@ -120,6 +130,8 @@ body {
     transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 6px rgba(255, 105, 180, 0.3);
     outline: none; 
+    order: 4; /* Esto hace que sea el cuarto elemento en flexbox */
+    margin-bottom: 10px; /* Espacio antes del mensaje oculto */
 }
 
 /* Mensaje "me gustas" */
@@ -130,6 +142,7 @@ body {
     margin-top: 20px;
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
     display: none; 
+    order: 5; /* Esto hace que sea el quinto elemento en flexbox */
 }
 
 .hidden-message.show {
@@ -140,15 +153,19 @@ body {
 @media (max-width: 600px) {
     .container {
         padding: 20px;
+        min-height: 80vh; /* Ajustar altura para móviles */
+        padding-top: 30px;
+        padding-bottom: 30px;
     }
-    .tulip-bouquet-img { /* Ajustado para la nueva clase */
-        width: 200px;
-        height: auto; /* Mantiene la proporción */
-        margin-bottom: 20px;
+    .tulip-bouquet-img { 
+        width: 250px; /* Ligeramente más pequeña en móviles */
+        margin-bottom: 25px;
     }
     .birthday-greeting {
         font-size: 2.2em;
+        margin-bottom: 30px;
     }
-}
+    .love-reason {
+        font-size: 1em;
     }
 }
