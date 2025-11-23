@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños, Mi Amor!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <div class="tulip-bouquet"></div>
+        <div class="particles-overlay"></div> 
+
+        <h1 class="birthday-greeting">¡Feliz Cumpleaños!</h1>
+        
+        <p class="love-reason">
+            La razón número 69 del porqué te amo: <br>
+            Me haces sentir agradecido por tenerte en mi vida y me haces sentir afortunado.
+        </p>
+
+        <button id="mystery-button" class="mystery-button">d^=b[,7'</button>
+        <p id="like-message" class="hidden-message">me gustas</p>
+    </div>
+
+    <audio id="birthday-song" loop autoplay>
+        <source src="http://googleusercontent.com/drive.google.com/uc?export=download&id=1n7vec2r7CoKicfD803_KgdEM3sidlYoc" type="audio/mp3">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    
+    <script>
+        document.addEventListener('click', function() {
+            var audio = document.getElementById('birthday-song');
+            // Solo intenta reproducir si está pausado
+            if (audio.paused) {
+                audio.play().catch(function(error) {
+                    console.error("El autoplay fue bloqueado. Necesitas un clic para iniciar la música.");
+                });
+            }
+        });
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
