@@ -29,21 +29,17 @@ body {
     box-sizing: border-box;
 }
 
-/* Estilo del bouquet de tulipanes usando la imagen (URL pública) */
-.tulip-bouquet {
-    width: 250px; 
-    height: 250px; 
+/* Estilo para la imagen de los tulipanes */
+.tulip-bouquet-img {
+    width: 250px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Mantiene la proporción */
     margin: 0 auto 30px auto;
-    /* URL de tu imagen de tulipanes brillantes */
-    background-image: url('https://i.ibb.co/b3wJ002/glowing-tulips-bouquet.png'); 
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    /* Animación de "respiración" para los tulipanes */
+    display: block; /* Para centrar con margin: auto */
+    /* Animación de "respiración" para el brillo de la imagen */
     animation: glow-breathe 2.5s infinite alternate ease-in-out; 
 }
 
-/* Keyframes para la animación del brillo de los tulipanes */
+/* Keyframes para la animación del brillo de los tulipanes (se aplica al filtro drop-shadow de la imagen) */
 @keyframes glow-breathe {
     0% { filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.7)) drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)); }
     100% { filter: drop-shadow(0 0 15px rgba(0, 255, 255, 1)) drop-shadow(0 0 25px rgba(0, 255, 255, 0.6)); }
@@ -145,12 +141,14 @@ body {
     .container {
         padding: 20px;
     }
-    .tulip-bouquet {
+    .tulip-bouquet-img { /* Ajustado para la nueva clase */
         width: 200px;
-        height: 200px;
+        height: auto; /* Mantiene la proporción */
         margin-bottom: 20px;
     }
     .birthday-greeting {
         font-size: 2.2em;
+    }
+}
     }
 }
