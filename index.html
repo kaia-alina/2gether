@@ -10,7 +10,7 @@
 <body>
 
     <div class="container">
-        <div class="tulip-bouquet"></div>
+        <img src="tulipanes-brillantes.png" alt="Ramo de tulipanes azules brillantes" class="tulip-bouquet-img">
         <div class="particles-overlay"></div> 
 
         <h1 class="birthday-greeting">¡Feliz Cumpleaños!</h1>
@@ -32,7 +32,6 @@
     <script>
         document.addEventListener('click', function() {
             var audio = document.getElementById('birthday-song');
-            // Solo intenta reproducir si está pausado
             if (audio.paused) {
                 audio.play().catch(function(error) {
                     console.error("El autoplay fue bloqueado. Necesitas un clic para iniciar la música.");
