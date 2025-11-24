@@ -17,14 +17,14 @@ body {
 }
 
 .container {
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo más transparente */
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 0 40px rgba(255, 105, 180, 0.3);
     max-width: 500px;
     width: 90%;
     text-align: center;
-    position: relative; /* ¡IMPORTANTE! Para posicionar los elementos absolutos dentro de él */
+    position: relative; 
     z-index: 1; 
     box-sizing: border-box;
     display: flex;
@@ -45,18 +45,16 @@ body {
     order: 1; 
 }
 
-/* 2. IMAGEN DE FLORES - Fusionada con el fondo */
+/* 2. IMAGEN DE FLORES - FUSIONADA Y CENTRADA */
 .tulip-bouquet-img {
     width: 350px; 
     height: auto; 
-    /* Eliminamos el margin-bottom para que el botón se posicione sobre ella */
-    margin: 0 auto; 
+    margin: 0 auto; /* Centrado y sin margen inferior para que el botón se superponga */
     display: block; 
     animation: glow-breathe 2.5s infinite alternate ease-in-out; 
     order: 2; 
-    mix-blend-mode: screen; 
+    mix-blend-mode: screen; /* FUSIONA el negro de la imagen con el fondo */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.8) inset; 
-    position: relative; /* Necesario para que el interaction-area se posicione correctamente */
 }
 
 /* Keyframes para la animación del brillo de los tulipanes */
@@ -115,23 +113,21 @@ body {
     font-weight: 400;
     font-size: 1.1em;
     line-height: 1.5;
-    margin-top: 40px; /* Más espacio arriba para que no choque con el botón/mensaje flotante */
+    margin-top: 40px; /* Espacio para que no choque con el botón/mensaje flotante */
     margin-bottom: 30px;
     color: #e0e0e0;
     order: 3; 
 }
 
-
-/* === NUEVA SECCIÓN PARA EL BOTÓN Y MENSAJE FLOTANTE === */
+/* === ÁREA DE INTERACCIÓN FLOTANTE === */
 .interaction-area {
-    position: absolute; /* Posicionamiento absoluto respecto a .container */
-    bottom: 30%; /* Ajusta la altura desde abajo del contenedor */
+    position: absolute; 
+    bottom: 30%; /* Ajusta la altura para posicionarlo sobre el ramo */
     left: 50%;
-    transform: translateX(-50%); /* Centrar horizontalmente */
-    z-index: 3; /* Asegura que esté por encima de la imagen y otros elementos */
-    width: 100%; /* Permite que el texto se centre */
-    text-align: center; /* Centra el texto del botón y el mensaje */
-    /* Animación simple para que el área "flote" o pulse */
+    transform: translateX(-50%); 
+    z-index: 3; 
+    width: 100%; 
+    text-align: center; 
     animation: pulse-area 3s infinite alternate ease-in-out;
 }
 
@@ -141,8 +137,7 @@ body {
     100% { transform: translateX(-50%) translateY(0); opacity: 1; }
 }
 
-
-/* Estilo del botón misterioso (ahora dentro de .interaction-area) */
+/* 4. BOTÓN MISTERIOSO */
 .mystery-button {
     background-color: #ff69b4;
     color: white;
@@ -154,16 +149,14 @@ body {
     transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 6px rgba(255, 105, 180, 0.3);
     outline: none; 
-    /* Quitamos el order y el margin-bottom ya que interaction-area lo maneja */
-    margin-bottom: 10px; /* Para separar del mensaje "me gustas" */
+    margin-bottom: 10px; 
 }
 
-/* Mensaje "me gustas" (ahora dentro de .interaction-area) */
+/* 5. MENSAJE OCULTO */
 .hidden-message {
     font-family: 'Pacifico', cursive;
     color: #00ffff; 
     font-size: 1.8em;
-    /* margin-top: 20px;  Ajustamos desde interaction-area o margin-bottom del botón */
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
     display: none; 
 }
