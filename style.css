@@ -7,7 +7,6 @@ body {
     color: #f8f8f8;
     margin: 0;
     padding: 0;
-    /* Centra el contenedor en la pantalla */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,58 +17,132 @@ body {
 }
 
 .container {
-    background-color: rgba(0, 0, 0, 0.7); 
+    background-color: rgba(0, 0, 0, 0.5); 
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 0 40px rgba(255, 105, 180, 0.3);
     max-width: 500px;
     width: 90%;
     text-align: center;
-    position: relative;
+    position: relative; /* ¡IMPORTANTE! Para posicionar los elementos absolutos dentro de él */
     z-index: 1; 
     box-sizing: border-box;
-    /* Configuración Flexbox: Columna y Centrado */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Asegura el centrado horizontal de los elementos */
-    /* Eliminamos justify-content para usar márgenes y controlar el espacio mejor */
+    align-items: center; 
     padding-top: 30px; 
     padding-bottom: 30px; 
 }
 
 
-/* 1. ¡FELIZ CUMPLEAÑOS! (Arriba de las flores) */
+/* 1. ¡FELIZ CUMPLEAÑOS! */
 .birthday-greeting {
     font-family: 'Pacifico', cursive;
     color: #ff69b4; 
     font-size: 3em;
-    margin-bottom: 30px; /* Espacio debajo del saludo para las flores */
+    margin-bottom: 30px; 
     text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
     order: 1; 
 }
 
-/* 2. IMAGEN DE FLORES (El Centro de Atención) */
+/* 2. IMAGEN DE FLORES - Fusionada con el fondo */
 .tulip-bouquet-img {
-    width: 350px; /* Aumentado a 350px para hacerlo el foco */
+    width: 350px; 
     height: auto; 
-    margin: 0 auto 40px auto; /* Centrado y buen espacio debajo para el texto */
+    /* Eliminamos el margin-bottom para que el botón se posicione sobre ella */
+    margin: 0 auto; 
     display: block; 
     animation: glow-breathe 2.5s infinite alternate ease-in-out; 
     order: 2; 
+    mix-blend-mode: screen; 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8) inset; 
+    position: relative; /* Necesario para que el interaction-area se posicione correctamente */
 }
 
-/* 3. RAZÓN DE AMOR (Debajo de las flores) */
+/* Keyframes para la animación del brillo de los tulipanes */
+@keyframes glow-breathe {
+    0% { filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.7)) drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)); }
+    100% { filter: drop-shadow(0 0 15px rgba(0, 255, 255, 1)) drop-shadow(0 0 25px rgba(0, 255, 255, 0.6)); }
+}
+
+/* Estilo y animación de las partículas flotantes */
+.particles-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0; 
+    overflow: hidden;
+}
+
+/* Creación y animación de partículas individuales (pseudo-elementos) */
+.particles-overlay::before,
+.particles-overlay::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(0, 255, 255, 0.5); 
+    border-radius: 50%;
+    opacity: 0;
+    animation: particle-flow 10s infinite ease-out;
+}
+
+.particles-overlay::before {
+    width: 5px; height: 5px;
+    top: 10%; left: 20%;
+    animation-delay: 0s;
+}
+
+.particles-overlay::after {
+    width: 8px; height: 8px;
+    top: 80%; left: 70%;
+    animation-delay: 5s; 
+    animation-duration: 12s; 
+}
+
+@keyframes particle-flow {
+    0% { transform: translate(0, 0) scale(0); opacity: 0; }
+    20% { opacity: 1; transform: translate(0, 0) scale(1); }
+    80% { opacity: 1; }
+    100% { transform: translate(150px, -250px) scale(0.5); opacity: 0; } 
+}
+
+
+/* 3. RAZÓN DE AMOR */
 .love-reason {
     font-family: 'Quicksand', sans-serif;
     font-weight: 400;
     font-size: 1.1em;
     line-height: 1.5;
+    margin-top: 40px; /* Más espacio arriba para que no choque con el botón/mensaje flotante */
     margin-bottom: 30px;
     color: #e0e0e0;
     order: 3; 
 }
 
-/* 4. BOTÓN MISTERIOSO */
+
+/* === NUEVA SECCIÓN PARA EL BOTÓN Y MENSAJE FLOTANTE === */
+.interaction-area {
+    position: absolute; /* Posicionamiento absoluto respecto a .container */
+    bottom: 30%; /* Ajusta la altura desde abajo del contenedor */
+    left: 50%;
+    transform: translateX(-50%); /* Centrar horizontalmente */
+    z-index: 3; /* Asegura que esté por encima de la imagen y otros elementos */
+    width: 100%; /* Permite que el texto se centre */
+    text-align: center; /* Centra el texto del botón y el mensaje */
+    /* Animación simple para que el área "flote" o pulse */
+    animation: pulse-area 3s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-area {
+    0% { transform: translateX(-50%) translateY(0); opacity: 1; }
+    50% { transform: translateX(-50%) translateY(-5px); opacity: 0.95; }
+    100% { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+
+/* Estilo del botón misterioso (ahora dentro de .interaction-area) */
 .mystery-button {
     background-color: #ff69b4;
     color: white;
@@ -81,34 +154,23 @@ body {
     transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 6px rgba(255, 105, 180, 0.3);
     outline: none; 
-    order: 4; 
-    margin-bottom: 10px;
+    /* Quitamos el order y el margin-bottom ya que interaction-area lo maneja */
+    margin-bottom: 10px; /* Para separar del mensaje "me gustas" */
 }
 
-/* 5. MENSAJE OCULTO */
+/* Mensaje "me gustas" (ahora dentro de .interaction-area) */
 .hidden-message {
     font-family: 'Pacifico', cursive;
     color: #00ffff; 
     font-size: 1.8em;
-    margin-top: 20px;
+    /* margin-top: 20px;  Ajustamos desde interaction-area o margin-bottom del botón */
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
     display: none; 
-    order: 5; 
 }
 
 .hidden-message.show {
     display: block; 
 }
-
-/* Keyframes y Partículas (Sin cambios, mantienen la animación) */
-@keyframes glow-breathe {
-    0% { filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.7)) drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)); }
-    100% { filter: drop-shadow(0 0 15px rgba(0, 255, 255, 1)) drop-shadow(0 0 25px rgba(0, 255, 255, 0.6)); }
-}
-.particles-overlay { /* Estilos de partículas aquí */ }
-.particles-overlay::before, .particles-overlay::after { /* Estilos de partículas aquí */ }
-@keyframes particle-flow { /* Keyframes de partículas aquí */ }
-
 
 /* Media Queries para Responsividad */
 @media (max-width: 600px) {
@@ -116,11 +178,14 @@ body {
         padding: 20px;
     }
     .tulip-bouquet-img { 
-        width: 250px; /* Tamaño adecuado para móviles */
+        width: 250px; 
         margin-bottom: 25px;
     }
     .birthday-greeting {
         font-size: 2.2em;
         margin-bottom: 25px;
+    }
+    .interaction-area {
+        bottom: 25%; /* Ajuste para móviles */
     }
 }
