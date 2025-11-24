@@ -24,7 +24,7 @@ body {
     max-width: 500px;
     width: 90%;
     text-align: center;
-    position: relative; 
+    position: relative; /* Base para el posicionamiento absoluto del botón */
     z-index: 1; 
     box-sizing: border-box;
     display: flex;
@@ -49,11 +49,11 @@ body {
 .tulip-bouquet-img {
     width: 350px; 
     height: auto; 
-    margin: 0 auto; /* Centrado y sin margen inferior para que el botón se superponga */
+    margin: 0 auto; 
     display: block; 
     animation: glow-breathe 2.5s infinite alternate ease-in-out; 
     order: 2; 
-    mix-blend-mode: screen; /* FUSIONA el negro de la imagen con el fondo */
+    mix-blend-mode: screen; /* FUSIONA el negro con el fondo */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.8) inset; 
 }
 
@@ -62,6 +62,37 @@ body {
     0% { filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.7)) drop-shadow(0 0 15px rgba(0, 255, 255, 0.4)); }
     100% { filter: drop-shadow(0 0 15px rgba(0, 255, 255, 1)) drop-shadow(0 0 25px rgba(0, 255, 255, 0.6)); }
 }
+
+/* --- ESTILOS PARA TEXTO DINÁMICO (Rotación de Idioma) --- */
+.dynamic-phrase {
+    font-family: 'Quicksand', sans-serif;
+    color: #00ffff; /* Color de acento cian */
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 20px; 
+    order: 2; /* Se coloca cerca de la imagen, antes de la razón de amor */
+}
+
+/* Animaciones para el efecto de Fade-in/Fade-out */
+.fade-out-animation {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+.fade-in-animation {
+    animation: fadeIn 0.5s ease-in forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-5px); }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(5px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
 
 /* Estilo y animación de las partículas flotantes */
 .particles-overlay {
@@ -101,7 +132,7 @@ body {
 
 @keyframes particle-flow {
     0% { transform: translate(0, 0) scale(0); opacity: 0; }
-    20% { opacity: 1; transform: translate(0, 0) scale(1); }
+    20% { transform: translate(0, 0) scale(1); opacity: 1; }
     80% { opacity: 1; }
     100% { transform: translate(150px, -250px) scale(0.5); opacity: 0; } 
 }
@@ -113,16 +144,16 @@ body {
     font-weight: 400;
     font-size: 1.1em;
     line-height: 1.5;
-    margin-top: 40px; /* Espacio para que no choque con el botón/mensaje flotante */
+    margin-top: 40px; 
     margin-bottom: 30px;
     color: #e0e0e0;
     order: 3; 
 }
 
-/* === ÁREA DE INTERACCIÓN FLOTANTE === */
+/* === ÁREA DE INTERACCIÓN FLOTANTE (Desktop) === */
 .interaction-area {
-    position: absolute; 
-    bottom: 30%; /* Ajusta la altura para posicionarlo sobre el ramo */
+    position: absolute; /* Posicionamiento flotante en Desktop */
+    bottom: 30%; 
     left: 50%;
     transform: translateX(-50%); 
     z-index: 3; 
@@ -165,10 +196,14 @@ body {
     display: block; 
 }
 
-/* Media Queries para Responsividad */
+/* ============================================== */
+/* === FIX CRUCIAL PARA DISPOSITIVOS MÓVILES === */
+/* ============================================== */
+
 @media (max-width: 600px) {
     .container {
         padding: 20px;
+        min-height: 85vh; /* Asegura espacio vertical */
     }
     .tulip-bouquet-img { 
         width: 250px; 
@@ -178,7 +213,22 @@ body {
         font-size: 2.2em;
         margin-bottom: 25px;
     }
+
+    /* FIX: Desactiva el posicionamiento absoluto del botón en móvil para prevenir superposición */
     .interaction-area {
-        bottom: 25%; /* Ajuste para móviles */
+        position: static; /* Vuelve al flujo normal */
+        bottom: auto; 
+        left: auto;
+        transform: none; /* Desactiva el centrado absoluto */
+        margin-top: 30px; 
+        animation: none; /* Desactiva la animación flotante en móvil */
+    }
+
+    /* Asegura que el texto sea legible y tenga buen espacio */
+    .love-reason {
+        font-size: 1em;
+        line-height: 1.4; 
+        margin-bottom: 20px;
+        margin-top: 20px;
     }
 }
