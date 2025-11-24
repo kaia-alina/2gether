@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¡Feliz Cumpleaños, Mi Amor!</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;700&display= மாவட்டம்display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -22,9 +22,11 @@
             Me haces sentir agradecido por tenerte en mi vida y me haces sentir afortunado.
         </p>
 
-        <button id="mystery-button" class="mystery-button">d^=b[,7'</button>
-        <p id="like-message" class="hidden-message">me gustas</p>
-    </div>
+        <div class="interaction-area">
+            <button id="mystery-button" class="mystery-button">d^=b[,7'</button>
+            <p id="like-message" class="hidden-message">me gustas</p>
+        </div>
+        </div>
 
     <audio id="birthday-song" loop autoplay>
         <source src="musica-cumple.mp3" type="audio/mp3">
@@ -34,7 +36,6 @@
     <script>
         document.addEventListener('click', function() {
             var audio = document.getElementById('birthday-song');
-            // Solo intenta reproducir si está pausado
             if (audio.paused) {
                 audio.play().catch(function(error) {
                     console.error("El autoplay fue bloqueado. Necesitas un clic para iniciar la música.");
